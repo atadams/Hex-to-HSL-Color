@@ -1,0 +1,45 @@
+## OS or Editor folders ##
+.DS_Store
+.cache
+.project
+.settings
+thumbs.db
+.com.apple.timemachine.supported
+.sublime*
+*.pyc
+
+## Packages ##
+*.zip
+
+## Logs ##
+*.log
+
+## Subversion ##
+.svn
+
+## Sass ##
+.sass-cache
+
+## Dreamweaver ##
+_notes
+dwsync.xml
+_mmServerScripts
+
+## Mura CMS ##
+/WEB-INF
+/config/settings.ini.cfm
+/config/version.cfm
+/config/mappings.cfm
+/config/cfapplication.cfm
+/default/assets
+/default/cache
+/dev
+/CFIDE
+/bluedragon
+/unitTests
+/www
+/settings.xml
+/logs
+/crossdomain.xml
+/.rdsTempFiles
+/muracms.esproj

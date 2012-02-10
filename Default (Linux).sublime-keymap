@@ -1,0 +1,3 @@
+[
+	{ "keys": ["shift+ctrl+u"], "command": "hex_to_hsl" }
+]
