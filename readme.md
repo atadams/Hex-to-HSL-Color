@@ -8,12 +8,12 @@ I have submitted a pull request to be included in Package Control. Until then, y
 
 # Usage
 Put the cursor on or select one or more hex colors (three character colors are OK)
-![Example 1](ex1.png)
+![Example 1](https://github.com/atadams/Hex-to-HSL-Color/raw/master/ex1.png)
 
 Press shift+ctrl+U.
 
 The colors will be converted to a properly formated CSS HSL color.
-![Example 2](ex2.png)
+![Example 2](https://github.com/atadams/Hex-to-HSL-Color/raw/master/ex2.png)
 
 # Future
 I hope to modify the plugin to convert decimal RGB colors and also handle alphas.
