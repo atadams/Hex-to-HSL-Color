@@ -3,7 +3,7 @@
         "id": "edit",
         "children":
         [
-            { "id": "hextohsl"},
+            { "caption": "-","id": "hextohsl"},
             { "command": "hex_to_hsl", "caption": "Convert Hex to HSL" }
         ]
     }
