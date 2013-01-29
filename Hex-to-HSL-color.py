@@ -14,9 +14,9 @@ class hex_to_hslCommand(sublime_plugin.TextCommand):
 	def rgb_to_hsl(self,r,g,b):
 		# From http://sebsauvage.net/python/snyppets/#hsl
 
-		if not (0 <= r <=255): raise ValueError,"r (red) parameter must be between 0 and 255."
-		if not (0 <= g <=255): raise ValueError,"g (green) parameter must be between 0 and 255."
-		if not (0 <= b <=255): raise ValueError,"b (blue) parameter must be between 0 and 255."
+		if not (0 <= r <=255): raise ValueError("r (red) parameter must be between 0 and 255.")
+		if not (0 <= g <=255): raise ValueError("g (green) parameter must be between 0 and 255.")
+		if not (0 <= b <=255): raise ValueError("b (blue) parameter must be between 0 and 255.")
 
 		var_R = r/255.0
 		var_G = g/255.0
