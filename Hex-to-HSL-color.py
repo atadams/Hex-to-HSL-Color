@@ -11,7 +11,7 @@ class hex_to_hslCommand(sublime_plugin.TextCommand):
 			if not self.word_reg.empty(): self.convert_to_hsl()
 
 
-	def rgb_to_hsl(self,r,g,b):
+	def rgb_to_hsl(self,r,g,b,a = None):
 		# From http://sebsauvage.net/python/snyppets/#hsl
 
 		if not (0 <= r <=255): raise ValueError("r (red) parameter must be between 0 and 255.")
@@ -41,7 +41,10 @@ class hex_to_hslCommand(sublime_plugin.TextCommand):
 			while h < 0.0: h += 1.0
 			while h > 1.0: h -= 1.0
 
-		return (h,s,l)
+		if a:
+			return (h,s,l,a)
+		else:
+			return (h,s,l)
 
 
 	def per_str(self, val):
@@ -53,22 +56,37 @@ class hex_to_hslCommand(sublime_plugin.TextCommand):
 		return str(int(tmp_val)) + "%"
 
 
-	def css_hsl(self,h,s,l):
-		return "hsl(" + str(int(round(h * 360))) + ", " + self.per_str(s) + ", " + self.per_str(l) + ")"
+	def css_hsl(self,h,s,l,a = None):
+		if a:
+			return "hsla(" + str(int(round(h * 360))) + ", " + self.per_str(s) + ", " + self.per_str(l) + ", " + str(a) + ")"
+		else:
+			return "hsl(" + str(int(round(h * 360))) + ", " + self.per_str(s) + ", " + self.per_str(l) + ")"
+
+	def get_decimal(self,val):
+		if isinstance(val, str) and val[-1] == "%":
+			return round(int(val[:-1]) * 255 / 100)
+		elif isinstance(val, int):
+			return val
+		else:
+			return 0
+
 
 
 	def convert_to_hsl(self):
 
 		word = self.view.substr(self.word_reg)
 
-		re_hex_color = re.compile('([0-9a-fA-F]{3}([0-9a-fA-F]{3})?){1}$')
-		match = re_hex_color.match(word)
+		re_hex_color = re.compile('\#?([0-9a-fA-F]{3}([0-9a-fA-F]{3})?){1}$')
+		re_rgb_color = re.compile('^rgb\(\s*(\d{1,3}%?)\s*,\s*(\d{1,3}%?)\s*,\s*(\d{1,3}%?)\s*\)')
+		re_rgba_color = re.compile('^rgba\(\s*(\d{1,3}\%?)\s*,\s*(\d{1,3}\%?)\s*,\s*(\d{1,3}\%?)\s*,\s*([\d+\.]+)\s*\)')
 
-		if match and self.view.substr(self.word_reg.begin() - 1) == "#":
+		hex_match = re_hex_color.match(word)
+		rgb_match = re_rgb_color.match(word)
+		rgba_match = re_rgba_color.match(word)
 
-			word_len = len(word)
+		if hex_match:
 
-			if word_len == 6:
+			if len(word) == 6:
 				r,g,b = tuple(int(word[i:i+2], 16) for i in range(0, 6, 2))
 			else:
 				r,g,b = tuple(int(word[i:i+1], 16)*17 for i in range(0, 3))
@@ -77,6 +95,40 @@ class hex_to_hslCommand(sublime_plugin.TextCommand):
 			tmp_css_hsl = self.css_hsl(h,s,l)
 
 			tmp_reg = sublime.Region(self.word_reg.begin() - 1, self.word_reg.end())
+
+			self.view.replace(self.edit, tmp_reg, tmp_css_hsl)
+
+			return True
+
+		elif rgb_match:
+			# temp = self.get_decimal("0%")
+			# sublime.status_message(str(temp))
+
+			r = int(rgb_match.group(1))
+			g = int(rgb_match.group(2))
+			b = int(rgb_match.group(3))
+
+			h,s,l = self.rgb_to_hsl(r,g,b)
+
+			tmp_css_hsl = self.css_hsl(h,s,l)
+
+			tmp_reg = self.word_reg
+
+			self.view.replace(self.edit, tmp_reg, tmp_css_hsl)
+
+			return True
+
+		elif rgba_match:
+			r = int(rgba_match.group(1))
+			g = int(rgba_match.group(2))
+			b = int(rgba_match.group(3))
+			a = float(rgba_match.group(4))
+
+			h,s,l,a = self.rgb_to_hsl(r,g,b,a)
+
+			tmp_css_hsl = self.css_hsl(h,s,l,a)
+
+			tmp_reg = self.word_reg
 
 			self.view.replace(self.edit, tmp_reg, tmp_css_hsl)
 
