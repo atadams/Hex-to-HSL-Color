@@ -1,10 +1,48 @@
 [
-    {
-        "id": "edit",
+  {
+    "id": "edit",
+    "children":
+    [
+      {
+        "caption": "-",
+        "id": "rgbtohsl"
+      },
+      {
+        "caption": "RGB to HSL",
+        "id": "rgbtohslparent",
         "children":
         [
-            { "caption": "-","id": "hextohsl"},
-            { "command": "hex_to_hsl", "caption": "Convert Hex to HSL" }
+          {
+            "caption": "Convert All RGB to HSL",
+            "command": "rgb_to_hsl",
+            "args":
+            {
+              "convert_all" : true
+            }
+          },
+          {
+            "caption": "Convert All RGB to HSLA",
+            "command": "rgb_to_hsl",
+            "args":
+            {
+              "convert_all" : true,
+              "force_alpha" : true
+            }
+          },
+          {
+            "caption": "Convert Selected RGB to HSL",
+            "command": "rgb_to_hsl"
+          },
+          {
+            "caption": "Convert Selected RGB to HSLA",
+            "command": "rgb_to_hsl",
+            "args":
+            {
+              "force_alpha" : true
+            }
+          }
         ]
-    }
+      }
+    ]
+  }
 ]

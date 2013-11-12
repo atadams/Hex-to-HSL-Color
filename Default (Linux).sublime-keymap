@@ -1,3 +1,19 @@
 [
-	{ "keys": ["shift+ctrl+u"], "command": "hex_to_hsl" }
+	{
+		"keys": ["shift+ctrl+u"],
+		"command": "rgb_to_hsl",
+		"args":
+		{
+			"convert_all" : true
+		}
+	},
+	{
+		"keys": ["shift+ctrl+alt+u"],
+		"command": "rgb_to_hsl",
+		"args":
+		{
+			"convert_all" : true,
+			"force_alpha" : true
+		}
+	}
 ]

@@ -1,0 +1,31 @@
+[
+  {
+    "caption": "HSL: Convert All RGB to HSL",
+    "command": "rgb_to_hsl",
+    "args":
+    {
+      "convert_all" : true
+    }
+  },
+  {
+    "caption": "HSL: Convert All RGB to HSLA",
+    "command": "rgb_to_hsl",
+    "args":
+    {
+      "convert_all" : true,
+      "force_alpha" : true
+    }
+  },
+  {
+    "caption": "HSL: Convert Selected RGB to HSL",
+    "command": "rgb_to_hsl"
+  },
+  {
+    "caption": "HSL: Convert Selected RGB to HSLA",
+    "command": "rgb_to_hsl",
+    "args":
+    {
+      "force_alpha" : true
+    }
+  }
+]
