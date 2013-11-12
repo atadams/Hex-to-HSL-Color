@@ -1,14 +1,15 @@
 import sublime, sublime_plugin, re, string
 
 class hex_to_hslCommand(sublime_plugin.TextCommand):
-	def run(self, edit):
 
+	def run(self, edit):
 		self.edit = edit
 
 		for region in self.view.sel():
 			self.region = region
 			self.word_reg = self.view.word(region)
 			if not self.word_reg.empty(): self.convert_to_hsl()
+
 
 
 	def rgb_to_hsl(self,r,g,b,a = None):
@@ -47,6 +48,7 @@ class hex_to_hslCommand(sublime_plugin.TextCommand):
 			return (h,s,l)
 
 
+
 	def per_str(self, val):
 		if val > 1:
 			tmp_val = val
@@ -56,33 +58,37 @@ class hex_to_hslCommand(sublime_plugin.TextCommand):
 		return str(int(tmp_val)) + "%"
 
 
+
 	def css_hsl(self,h,s,l,a = None):
+		hsl_str = str(int(round(h * 360))) + ", " + self.per_str(s) + ", " + self.per_str(l)
 		if a:
-			return "hsla(" + str(int(round(h * 360))) + ", " + self.per_str(s) + ", " + self.per_str(l) + ", " + str(a) + ")"
+			if float(a) > 1:
+				a = 1
+			return "hsla(" + hsl_str + ", " + str(a) + ")"
 		else:
-			return "hsl(" + str(int(round(h * 360))) + ", " + self.per_str(s) + ", " + self.per_str(l) + ")"
+			return "hsl(" + hsl_str + ")"
+
+
 
 	def get_decimal(self,val):
-		if isinstance(val, str) and val[-1] == "%":
-			return round(int(val[:-1]) * 255 / 100)
-		elif isinstance(val, int):
-			return val
+		val_strip = val.strip()
+		if isinstance(val_strip, str) and val_strip[-1] == "%":
+			return round(int(val_strip[:-1]) * 255 / 100)
+		elif isinstance(val_strip, int):
+			return val_strip
 		else:
-			return 0
+			return int(val_strip)
 
 
 
 	def convert_to_hsl(self):
-
 		word = self.view.substr(self.word_reg)
 
-		re_hex_color = re.compile('\#?([0-9a-fA-F]{3}([0-9a-fA-F]{3})?){1}$')
-		re_rgb_color = re.compile('^rgb\(\s*(\d{1,3}%?)\s*,\s*(\d{1,3}%?)\s*,\s*(\d{1,3}%?)\s*\)')
-		re_rgba_color = re.compile('^rgba\(\s*(\d{1,3}\%?)\s*,\s*(\d{1,3}\%?)\s*,\s*(\d{1,3}\%?)\s*,\s*([\d+\.]+)\s*\)')
+		hex_re = re.compile('\#?([0-9a-fA-F]{3}([0-9a-fA-F]{3})?){1}$')
+		rgb_re = re.compile('rgba?\(([\d, \%\.]+)\)')
 
-		hex_match = re_hex_color.match(word)
-		rgb_match = re_rgb_color.match(word)
-		rgba_match = re_rgba_color.match(word)
+		hex_match = hex_re.match(word)
+		rgb_match = rgb_re.match(word)
 
 		if hex_match:
 
@@ -101,37 +107,21 @@ class hex_to_hslCommand(sublime_plugin.TextCommand):
 			return True
 
 		elif rgb_match:
-			# temp = self.get_decimal("0%")
-			# sublime.status_message(str(temp))
+			rgb_list = rgb_match.group(1).split(",")
+			rgb_list_len = len(rgb_list)
 
-			r = int(rgb_match.group(1))
-			g = int(rgb_match.group(2))
-			b = int(rgb_match.group(3))
+			if 3 <= rgb_list_len <= 4:
+				r,g,b = list(map(self.get_decimal,rgb_list[0:3]))
 
-			h,s,l = self.rgb_to_hsl(r,g,b)
+				if rgb_list_len == 4:
+					a = rgb_list[3].strip()
+				else:
+					a = None
 
-			tmp_css_hsl = self.css_hsl(h,s,l)
-
-			tmp_reg = self.word_reg
-
-			self.view.replace(self.edit, tmp_reg, tmp_css_hsl)
-
-			return True
-
-		elif rgba_match:
-			r = int(rgba_match.group(1))
-			g = int(rgba_match.group(2))
-			b = int(rgba_match.group(3))
-			a = float(rgba_match.group(4))
-
-			h,s,l,a = self.rgb_to_hsl(r,g,b,a)
-
-			tmp_css_hsl = self.css_hsl(h,s,l,a)
-
-			tmp_reg = self.word_reg
-
-			self.view.replace(self.edit, tmp_reg, tmp_css_hsl)
+				h,s,l,a = self.rgb_to_hsl(r,g,b,a)
+				self.view.replace(self.edit, self.word_reg, self.css_hsl(h,s,l,a))
 
 			return True
 
+		return True
 
