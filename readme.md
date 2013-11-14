@@ -15,7 +15,7 @@ You can install using [Package Control](http://wbond.net/sublime_packages/packag
 * Optionally, you can convert hex, RGB, and RGBA to HSLA (force alpha). 
 * You can now convert all hex, RGB, and RGBA colors in a file with a single command (`shift+ctrl+U`).
 
-# Useage
+# Usage
 * Convert All to RGB (preserving alpha): `shift+ctrl+U`
 * Convert All to RGBA (force alpha): `shift+ctrl+alt+U`
 * Convert Selected to RGB: `Edit > RGB to HSL`
