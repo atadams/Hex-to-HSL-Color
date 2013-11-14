@@ -14,7 +14,7 @@ Version 2.0.0
 
 Usage
 
-  * Convert All to RGB (preserving alpha): shift+ctrl+U
-  * Convert All to RGBA (force alpha): shift+ctrl+alt+U
-  * Convert Selected to RGB: Edit > RGB to HSL
-  * Convert Selected to RGBA: Edit > RGB to HSL
+  * Convert All to HSL (preserving alpha): shift+ctrl+U
+  * Convert All to HSLA (force alpha): shift+ctrl+alt+U
+  * Convert Selected to HSL: Edit > RGB to HSL
+  * Convert Selected to HSLA: Edit > RGB to HSL
