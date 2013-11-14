@@ -11,7 +11,7 @@ In the past, due to browser (IE) compatibility, it was best to use a CSS preproc
 You can install using [Package Control](http://wbond.net/sublime_packages/package_control) or you can download or clone the repository and drop it into your Sublime Text packages directory.
 
 # Version 2 Features
-* Version 2 now converts hex and RGB to HSL and RGBA to HSLA.
+* Version 2 now converts hex and RGB to HSL and RGBA to HSLA. The previous version only converted hex to HSL.
 * Optionally, you can convert hex, RGB, and RGBA to HSLA (force alpha). 
 * You can now convert all hex, RGB, and RGBA colors in a file with a single command (`shift+ctrl+U`).
 
