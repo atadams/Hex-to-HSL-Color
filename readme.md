@@ -38,4 +38,3 @@ If you need more convincing about HSL, try these:
 * [Paul Irish's Mother-effing HSL](http://mothereffinghsl.com/)
 * [Coding Colors Easily Using CSS3 hsl() Notation](http://www.useragentman.com/blog/2010/08/28/coding-colors-easily-using-css3-hsl-notation/)
 * [Treehouse Quick Tip: HSLa Color Values in CSS](http://www.youtube.com/watch?v=IdSsSaTU4lk)
-* [HSL Color Wheel](http://hsl.clrpick.me/)
