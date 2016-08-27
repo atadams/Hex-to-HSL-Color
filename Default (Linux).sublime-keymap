@@ -1,19 +1,31 @@
 [
 	{
 		"keys": ["shift+ctrl+u"],
-		"command": "rgb_to_hsl",
-		"args":
-		{
-			"convert_all" : true
-		}
+		"command": "rgb_to_hsl"
 	},
 	{
 		"keys": ["shift+ctrl+alt+u"],
 		"command": "rgb_to_hsl",
 		"args":
 		{
-			"convert_all" : true,
 			"force_alpha" : true
 		}
+	},
+	{
+	  "keys": ["shift+ctrl+u", "shift+ctrl+u"],
+	  "command": "rgb_to_hsl",
+	  "args":
+	  {
+	    "convert_all" : true
+	  }
+	},
+	{
+	  "keys": ["shift+ctrl+alt+u", "shift+ctrl+alt+u"],
+	  "command": "rgb_to_hsl",
+	  "args":
+	  {
+	    "convert_all" : true,
+	    "force_alpha" : true
+	  }
 	}
 ]
