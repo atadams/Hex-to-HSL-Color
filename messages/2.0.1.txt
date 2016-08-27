@@ -1,0 +1,38 @@
+Version 2.0.1
+ 
+Changed
+
+  * Commands for ‘Convert All’ now work on ‘Convert Selected’ instead.
+  
+  * Commands for ’Convert All’ now require double hotkey input.
+
+Updated Usage
+
+  * Convert Selected to HSL:               shift+ctrl+U
+  * Convert Selected to HSLA:              shift+ctrl+alt+U
+  * Convert All to HSL (preserving alpha): shift+ctrl+U + shift+ctrl+U
+  * Convert All to HSLA (force alpha):     shift+ctrl+alt+U + shift+ctrl+alt+U
+
+________________________
+
+Notes from Version 2.0.0
+
+
+  * Now converts RGB and RGBA colors.
+
+  * Converts hex and RGB to HSL and RGBA to HSLA. For example:
+      rgba(117, 149, 9, 0.65)  ->  hsla(74, 89%, 31%, 0.65)
+               rgb(75, 96, 6)  ->  hsl(74, 88%, 20%)
+                      #bada55  ->  hsl(74, 64%, 59%)
+
+  * Optionally, you can convert hex, RGB, and RGBA to HSLA (force alpha).
+
+  * You can now convert all colors in a file with a single command (shift+ctrl+U).
+
+
+Usage (see Updated Usage in Version 2.0.1 above)
+
+  * Convert All to HSL (preserving alpha): shift+ctrl+U
+  * Convert All to HSLA (force alpha): shift+ctrl+alt+U
+  * Convert Selected to HSL: Edit > RGB to HSL
+  * Convert Selected to HSLA: Edit > RGB to HSL
