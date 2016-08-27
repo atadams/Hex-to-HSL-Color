@@ -13,13 +13,13 @@ You can install using [Package Control](http://wbond.net/sublime_packages/packag
 # Version 2 Features
 * Version 2 now converts hex and RGB to HSL and RGBA to HSLA. The previous version only converted hex to HSL.
 * Optionally, you can convert hex, RGB, and RGBA to HSLA (force alpha). 
-* You can now convert all hex, RGB, and RGBA colors in a file with a single command (`shift+ctrl+U`).
+* You can now convert all hex, RGB, and RGBA colors in a file by inputting the following command twice: (`shift+ctrl+U`).
 
 # Usage
-* Convert All to HSL (preserving alpha): `shift+ctrl+U`
-* Convert All to HSLA (force alpha): `shift+ctrl+alt+U`
-* Convert Selected to HSL: `Edit > RGB to HSL`
-* Convert Selected to HSLA: `Edit > RGB to HSL`
+* Convert Selected to HSL:               shift+ctrl+U
+* Convert Selected to HSLA:              shift+ctrl+alt+U
+* Convert All to HSL (preserving alpha): shift+ctrl+U     + shift+ctrl+U
+* Convert All to HSLA (force alpha):     shift+ctrl+alt+U + shift+ctrl+alt+U
 
 # Why No Hex/HSL to RGB support
 HSL color is just better than hex or RGB ([Brandon Mathis](http://brandonmathis.com/blog/2011/03/02/hslpicker.com-released/) gives a good explanation why HSL rocks). I don't see any use for RGB—HSL is just more intuitive and makes it much easier to [combine colors](http://www.colorsontheweb.com/combiningcolors.asp) into a logical color scheme.
