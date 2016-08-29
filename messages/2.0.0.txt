@@ -1,0 +1,11 @@
+Hex to HSL Plugin v2.0.0
+
+ - Now converts RGB and RGBA colors.
+
+ - Converts hex and RGB to HSL and RGBA to HSLA. For example:
+      rgba(117, 149, 9, 0.65)  ->  hsla(74, 89%, 31%, 0.65)
+               rgb(75, 96, 6)  ->  hsl(74, 88%, 20%)
+                      #bada55  ->  hsl(74, 64%, 59%)
+
+ - Optionally, you can convert hex, RGB, and RGBA to HSLA (force alpha).
+ - You can now convert all colors in a file with a single command (shift+ctrl+U).
