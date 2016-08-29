@@ -4,6 +4,11 @@ import re
 import string
 
 
+HEX_RE_STRING = '#((?:[\da-f]{3}){1,2})\\b'
+RGB_RE_STRING = 'rgba?\(([\d, \%\.]+)\)'
+
+HEX_RE = re.compile(HEX_RE_STRING, re.IGNORECASE)
+RGB_RE = re.compile(RGB_RE_STRING, re.IGNORECASE)
 
 class RgbToHslCommand(sublime_plugin.TextCommand):
 
@@ -11,7 +16,7 @@ class RgbToHslCommand(sublime_plugin.TextCommand):
 		self.edit = edit
 
 		if convert_all:
-			selection = self.view.find_all('(#(?:[\da-f]{3}){1,2}(?![\da-f])|rgba?\(([\d, \%\.]+)\))', sublime.IGNORECASE)
+			selection = self.view.find_all('(' + HEX_RE_STRING + '|' + RGB_RE_STRING + ')', sublime.IGNORECASE)
 			selection = reversed(selection)
 		else:
 			selection = self.view.sel()
@@ -25,12 +30,8 @@ class RgbToHslCommand(sublime_plugin.TextCommand):
 
 
 def convert_to_hsl(word,force_alpha = False):
-
-	hex_re = re.compile('#((?:[\da-f]{3}){1,2})', re.IGNORECASE)
-	rgb_re = re.compile('rgba?\(([\d, \%\.]+)\)', re.IGNORECASE)
-
-	hex_match = hex_re.match(word)
-	rgb_match = rgb_re.match(word)
+	hex_match = HEX_RE.match(word)
+	rgb_match = RGB_RE.match(word)
 
 	if hex_match:
 		hex_color = hex_match.group(1)
@@ -134,5 +135,3 @@ def get_decimal(val):
 		return round(int(val_strip[:-1]) * 255 / 100)
 	else:
 		return int(val_strip)
-
-

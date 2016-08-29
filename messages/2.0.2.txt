@@ -1,0 +1,4 @@
+Hex to HSL Plugin v2.0.2
+
+Fix:
+ - No longer selects hex pattern in a longer string. Resolves issue #8 (https://github.com/atadams/Hex-to-HSL-Color/issues/8).
