@@ -26,7 +26,7 @@ HSL color is just better than hex or RGB ([Brandon Mathis](http://brandonmathis.
 
 If you have the need to convert to RGB, you might try the [CSS Color Converter](https://github.com/TheDutchCoder/ColorConvert) plugin.
 
-#HSL Resources
+# HSL Resources
 If you need more convincing about HSL, try these:
 
 * [W3: HSL Colors](http://dev.w3.org/csswg/css-color/#the-hsl-notation)
